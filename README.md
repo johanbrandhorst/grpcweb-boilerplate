@@ -37,9 +37,8 @@ bindings!
 ## What this repo isn't
 
 This repo is _not_ a general example of how to use
-the GopherJS gRPC-Web bindings.
-For such an example, please see
-https://github.com/johanbrandhorst/grpcweb-example.
+the GopherJS gRPC-Web bindings. For such an example, please see
+https://github.com/johanbrandhorst/grpcweb-example and https://grpcweb.jbrandhorst.com.
 
 This repo is also not a particularly good example
 of how to write an app with GopherJS.
