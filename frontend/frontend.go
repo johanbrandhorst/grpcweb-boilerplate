@@ -9,8 +9,8 @@ import (
 )
 
 // Build this snippet with GopherJS, minimize the output and
-// write it to html/app.js
-//go:generate gopherjs build app.go -m -o html/app.js
+// write it to html/frontend.js
+//go:generate gopherjs build frontend.go -m -o html/frontend.js
 
 // Integrate generated JS into a Go file for static loading.
 //go:generate bash -c "go run assets_generate.go"

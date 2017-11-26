@@ -6,7 +6,7 @@ generate:
 
 clean:
 	rm ./proto/client/* ./proto/server/* ./cert.pem ./key.pem \
-		./frontend/html/app.js ./frontend/html/app.js.map
+		./frontend/html/frontend.js ./frontend/html/frontend.js.map
 
 install:
 	go install ./vendor/github.com/golang/protobuf/protoc-gen-go \
