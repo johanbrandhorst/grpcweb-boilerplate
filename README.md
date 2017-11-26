@@ -34,7 +34,7 @@ in your frontend client `frontend/app.go`. This should hopefully be
 all you need to get started playing around with the GopherJS gRPC-Web
 bindings!
 
-## What repo this isn't
+## What this repo isn't
 
 This repo is _not_ a general example of how to use
 the GopherJS gRPC-Web bindings.
