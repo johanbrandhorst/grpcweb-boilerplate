@@ -13,11 +13,22 @@ After cloning the repo, there are a couple of initial steps;
 
 1. Install the generate dependencies with `make install`.
 1. Generate a self-signed certificate with `make generate_cert`.
-1. Edit the `go_package` and `gopherjs.gopherjs_package` protobuf options in `proto/web.proto`. These should be updated to point to the packages that are used in your repo.
-1. Edit the imports in `main.go`, `backend/backend.go` and `frontend/frontend.go` to point to the the paths used in your repo.
+1. Edit the `go_package` and `gopherjs.gopherjs_package` protobuf options in `proto/web.proto`.
+These should be updated to point to the packages that are used in your repo.
+Edit the imports in `main.go`, `backend/backend.go` and
+`frontend/frontend.go` to point to the the paths used in your repo.
+This step can also be accomplished with a neat `find`/`sed` combination
+(replace `yourscmprovider.com/youruser/yourrepo` with your cloned repo path):
+    ```bash
+    $ find . -type f \
+        -name '*.go' \
+        -or -name '*.proto' \
+        -not -path '*/vendor/*' \
+        -exec sed -i -e "s;github.com/johanbrandhorst/grpcweb-boilerplate;yourscmprovider.com/youruser/yourrepo;g" {} \;
+    ```
+1. Generate the JS files with `make generate`.
 
-After that is done, you can generate the JS files using `make generate`,
-and try out the web server using `make serve`.
+Now you can run the web server with `make serve`.
 
 ## Making it your own
 
@@ -31,7 +42,12 @@ Once that is done, regenerate the backend and frontend files using
 be implementing the interface defined by the generated file in `proto/server/`.
 
 It also means you can start using the functions exposed by the server
-in your frontend client `frontend/frontend.go`. This should hopefully be
+in your frontend client in `frontend/frontend.go`.
+
+Every time you make changes to any files under `frontend/` you'll
+need to regenerate the JS files using `make generate`.
+
+This should hopefully be
 all you need to get started playing around with the GopherJS gRPC-Web
 bindings!
 
