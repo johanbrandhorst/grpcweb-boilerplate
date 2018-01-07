@@ -20,11 +20,10 @@ Edit the imports in `main.go`, `backend/backend.go` and
 This step can also be accomplished with a neat `find`/`sed` combination
 (replace `yourscmprovider.com/youruser/yourrepo` with your cloned repo path):
     ```bash
-    $ find . -type f \
-        -name '*.go' \
-        -or -name '*.proto' \
-        -not -path '*/vendor/*' \
-        -exec sed -i -e "s;github.com/johanbrandhorst/grpcweb-boilerplate;yourscmprovider.com/youruser/yourrepo;g" {} \;
+    $ find . \
+        -path ./vendor -prune \
+        -o -type f \( -name '*.go' -o -name '*.proto' \) \
+        -exec sed -i -e "s;github.com/johanbrandhorst/grpcweb-boilerplate;yourscmprovider.com/youruser/yourrepo;g" {} +
     ```
 1. Generate the JS files with `make generate`.
 
