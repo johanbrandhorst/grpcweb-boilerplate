@@ -3,8 +3,34 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/foobaz/go-zopfli"
+  packages = [
+    ".",
+    "zopfli"
+  ]
+  revision = "7432051485e2617ac160eba6129ab7efedecd427"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/golang/gddo"
+  packages = ["httputil/header"]
+  revision = "bc1419aa93d33c909e9c141b49ef46bdcbfa10b0"
+
+[[projects]]
+  branch = "master"
   name = "github.com/golang/protobuf"
-  packages = ["proto","protoc-gen-go","protoc-gen-go/descriptor","protoc-gen-go/generator","protoc-gen-go/grpc","protoc-gen-go/plugin","ptypes","ptypes/any","ptypes/duration","ptypes/timestamp"]
+  packages = [
+    "proto",
+    "protoc-gen-go",
+    "protoc-gen-go/descriptor",
+    "protoc-gen-go/generator",
+    "protoc-gen-go/grpc",
+    "protoc-gen-go/plugin",
+    "ptypes",
+    "ptypes/any",
+    "ptypes/duration",
+    "ptypes/timestamp"
+  ]
   revision = "1e59b77b52bf8e4b449a57e6f79f21226d571845"
 
 [[projects]]
@@ -26,10 +52,28 @@
   revision = "0ab7201b53447db59d63ff3a95173e565baae10a"
 
 [[projects]]
-  branch = "master"
   name = "github.com/johanbrandhorst/protobuf"
-  packages = ["grpcweb","grpcweb/grpcwebjs","grpcweb/metadata","grpcweb/status","internal","jspb","proto","protoc-gen-gopherjs","protoc-gen-gopherjs/generator","protoc-gen-gopherjs/grpc","wsproxy"]
-  revision = "60d0fc7c5ab54ad205aeb09193eae96dfdc2066f"
+  packages = [
+    "grpcweb",
+    "grpcweb/grpcwebjs",
+    "grpcweb/metadata",
+    "grpcweb/status",
+    "internal",
+    "jspb",
+    "proto",
+    "protoc-gen-gopherjs",
+    "protoc-gen-gopherjs/generator",
+    "protoc-gen-gopherjs/grpc",
+    "wsproxy"
+  ]
+  revision = "b90b6be08aa47c5a5e4f50e8e409cf2e625f7cad"
+  version = "v0.5.2"
+
+[[projects]]
+  name = "github.com/lpar/gzipped"
+  packages = ["."]
+  revision = "8e9a0db009a7e2ca48d46825a0b32e8b2465c810"
+  version = "v1.0.0"
 
 [[projects]]
   name = "github.com/rs/cors"
@@ -64,19 +108,45 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
-  packages = ["context","http2","http2/hpack","idna","internal/timeseries","lex/httplex","trace"]
+  packages = [
+    "context",
+    "http2",
+    "http2/hpack",
+    "idna",
+    "internal/timeseries",
+    "lex/httplex",
+    "trace"
+  ]
   revision = "9dfe39835686865bff950a07b394c12a98ddc811"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
-  packages = ["unix","windows"]
+  packages = [
+    "unix",
+    "windows"
+  ]
   revision = "82aafbf43bf885069dc71b7e7c2f9d7a614d47da"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/text"
-  packages = ["collate","collate/build","internal/colltab","internal/gen","internal/tag","internal/triegen","internal/ucd","language","secure/bidirule","transform","unicode/bidi","unicode/cldr","unicode/norm","unicode/rangetable"]
+  packages = [
+    "collate",
+    "collate/build",
+    "internal/colltab",
+    "internal/gen",
+    "internal/tag",
+    "internal/triegen",
+    "internal/ucd",
+    "language",
+    "secure/bidirule",
+    "transform",
+    "unicode/bidi",
+    "unicode/cldr",
+    "unicode/norm",
+    "unicode/rangetable"
+  ]
   revision = "88f656faf3f37f690df1a32515b479415e1a6769"
 
 [[projects]]
@@ -87,9 +157,32 @@
 
 [[projects]]
   name = "google.golang.org/grpc"
-  packages = [".","balancer","balancer/roundrobin","codes","connectivity","credentials","encoding","grpclb/grpc_lb_v1/messages","grpclog","internal","keepalive","metadata","naming","peer","resolver","resolver/dns","resolver/passthrough","stats","status","tap","transport"]
-  revision = "5a9f7b402fe85096d2e1d0383435ee1876e863d0"
-  version = "v1.8.0"
+  packages = [
+    ".",
+    "balancer",
+    "balancer/base",
+    "balancer/roundrobin",
+    "codes",
+    "connectivity",
+    "credentials",
+    "encoding",
+    "grpclb/grpc_lb_v1/messages",
+    "grpclog",
+    "internal",
+    "keepalive",
+    "metadata",
+    "naming",
+    "peer",
+    "resolver",
+    "resolver/dns",
+    "resolver/passthrough",
+    "stats",
+    "status",
+    "tap",
+    "transport"
+  ]
+  revision = "6b51017f791ae1cfbec89c52efdf444b13b550ef"
+  version = "v1.9.2"
 
 [[projects]]
   branch = "master"
@@ -100,6 +193,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "16106ef264109d1bc7549b45274db95b844160b84a77175e5685db9c0999130b"
+  inputs-digest = "aeab5b1ae909c4b3afd4acd0f19d7868717304e2268a4628c2026a818e15855b"
   solver-name = "gps-cdcl"
   solver-version = 1
