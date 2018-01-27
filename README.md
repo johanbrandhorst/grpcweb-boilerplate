@@ -15,12 +15,7 @@ After cloning the repo, there are a couple of initial steps;
 
 1. Install the generate dependencies with `make install`.
 1. Generate a self-signed certificate with `make generate_cert`.
-1. Edit the `go_package` and `gopherjs.gopherjs_package` protobuf options in `proto/web.proto`.
-These should be updated to point to the packages that are used in your repo.
-Edit the imports in `main.go`, `backend/backend.go` and
-`frontend/frontend.go` to point to the the paths used in your repo.
-This step can also be accomplished with a neat `find`/`sed` combination
-(replace `yourscmprovider.com/youruser/yourrepo` with your cloned repo path):
+1. Run script to replace imports (replace `yourscmprovider.com/youruser/yourrepo` with your cloned repo path):
     ```bash
     $ find . \
         -path ./vendor -prune \
