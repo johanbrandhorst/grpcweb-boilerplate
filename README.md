@@ -1,5 +1,7 @@
 # GopherJS gRPC-Web Boilerplate
 
+![gRPC-Web Gopher](./go-grpc-web.svg "gRPC-Web Gopher")
+
 A minimal repo containing all the boilerplate for getting started with
 GopherJS using gRPC-Web. Clone and use as a base for your own
 experimentation with GopherJS and gRPC-Web!
