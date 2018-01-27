@@ -6,12 +6,14 @@ package main
 import (
 	"crypto/tls"
 	"net/http"
+	"path"
 	"strings"
 	"time"
 
 	"github.com/gorilla/websocket"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/johanbrandhorst/protobuf/wsproxy"
+	"github.com/lpar/gzipped"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
@@ -59,7 +61,7 @@ func main() {
 			wsproxy.ServeHTTP(resp, req)
 		} else {
 			// Serve the GopherJS client
-			http.FileServer(bundle.Assets).ServeHTTP(resp, req)
+			folderReader(gzipped.FileServer(bundle.Assets)).ServeHTTP(resp, req)
 		}
 	}
 
@@ -81,4 +83,14 @@ func main() {
 
 	logger.Info("Serving on https://" + addr)
 	logger.Fatal(httpsSrv.ListenAndServeTLS("./cert.pem", "./key.pem"))
+}
+
+func folderReader(fn http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, req *http.Request) {
+		if strings.HasSuffix(req.URL.Path, "/") {
+			// Use contents of index.html for directory, if present.
+			req.URL.Path = path.Join(req.URL.Path, "index.html")
+		}
+		fn.ServeHTTP(w, req)
+	}
 }
