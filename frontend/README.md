@@ -11,6 +11,4 @@ via `go:generate` in `frontend.go`.
 
 ## html
 
-The `html` folder contains the static sources used. The favicon included
-is borrowed from the [grpc.github.io](https://github.com/grpc/grpc.github.io/) repo, and
-subject to the LICENSE therein.
+The `html` folder contains the static sources used.
