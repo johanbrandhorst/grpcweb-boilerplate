@@ -9,8 +9,11 @@ import (
 )
 
 // Build this snippet with GopherJS, minimize the output and
-// write it to html/frontend.js
+// write it to html/frontend.js.
 //go:generate gopherjs build frontend.go -m -o html/frontend.js
+
+// Zopfli compress static files.
+//go:generate find ./html/ -name *.gz -prune -o -type f -exec go-zopfli {} +
 
 // Integrate generated JS into a Go file for static loading.
 //go:generate bash -c "go run assets_generate.go"
