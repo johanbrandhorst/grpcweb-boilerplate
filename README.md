@@ -9,20 +9,40 @@ experimentation with GopherJS and gRPC-Web!
 It comes complete with a Go generate template for statically serving
 your generated JS code from the backend server.
 
-## Usage
+## Video example
+A recording of my presentation at the Go Devroom at FOSDEM 2018, in which
+I clone this repo I perform a small demo of its use.
+
+[![Video example](youtube.png)](https://youtu.be/R2HaxH7Et64?t=603 "Video example")
+
+## Requirements
+
+Generating the files requires the `protoc` protobuf compiler.
+Please install it according to the
+[installation instructions](https://github.com/google/protobuf#protocol-compiler-installation)
+for your specific platform.
+
+## Getting started
 
 After cloning the repo, there are a couple of initial steps;
 
 1. Install the generate dependencies with `make install`.
+    This will install `protoc-gen-go` and `protoc-gen-gopherjs`, which
+    are necessary for us to generate the Go and GopherJS files.
 1. Generate a self-signed certificate with `make generate_cert`.
-1. Run script to replace imports (replace `yourscmprovider.com/youruser/yourrepo` with your cloned repo path):
+    This is necessary for us to serve the GopherJS files over HTTPS.
+    When opening your browser it will not trust the certificate, so
+    if you want to, you can add the generate certificate to your trust store first.
+1. If you forked this repo, or cloned it into a different directory from the github structure,
+    you will need to correct the import paths. Here's a nice `find` one-liner for accomplishing this
+    (replace `yourscmprovider.com/youruser/yourrepo` with your cloned repo path):
     ```bash
-    $ find . \
-        -path ./vendor -prune \
-        -o -type f \( -name '*.go' -o -name '*.proto' \) \
-        -exec sed -i -e "s;github.com/johanbrandhorst/grpcweb-boilerplate;yourscmprovider.com/youruser/yourrepo;g" {} +
+    $ find . -path ./vendor -prune -o -type f \( -name '*.go' -o -name '*.proto' \) -exec sed -i -e "s;github.com/johanbrandhorst/grpcweb-boilerplate;yourscmprovider.com/youruser/yourrepo;g" {} +
     ```
-1. Generate the JS files with `make generate`.
+1. Finally, generate the JS files with `make generate`.
+    If you encounter an error here, make sure you've installed
+    `protoc` and it is accessible in your `$PATH`, and make sure
+    you've performed step 1.
 
 Now you can run the web server with `make serve`.
 
