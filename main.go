@@ -12,11 +12,9 @@ import (
 
 	"github.com/gorilla/websocket"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"github.com/johanbrandhorst/protobuf/wsproxy"
 	"github.com/lpar/gzipped"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/grpclog"
 
 	"github.com/johanbrandhorst/grpcweb-boilerplate/backend"
@@ -42,23 +40,13 @@ func init() {
 func main() {
 	gs := grpc.NewServer()
 	server.RegisterBackendServer(gs, &backend.Backend{})
-	wrappedServer := grpcweb.WrapServer(gs)
-
-	clientCreds, err := credentials.NewClientTLSFromFile("./cert.pem", "")
-	if err != nil {
-		logger.WithError(err).Fatal("Failed to get local server client credentials, did you run `make generate_cert`?")
-	}
-
-	wsproxy := wsproxy.WrapServer(
-		http.HandlerFunc(wrappedServer.ServeHTTP),
-		wsproxy.WithLogger(logger),
-		wsproxy.WithTransportCredentials(clientCreds))
+	wrappedServer := grpcweb.WrapServer(gs, grpcweb.WithWebsockets(true))
 
 	handler := func(resp http.ResponseWriter, req *http.Request) {
 		// Redirect gRPC and gRPC-Web requests to the gRPC-Web Websocket Proxy server
 		if req.ProtoMajor == 2 && strings.Contains(req.Header.Get("Content-Type"), "application/grpc") ||
 			websocket.IsWebSocketUpgrade(req) {
-			wsproxy.ServeHTTP(resp, req)
+			wrappedServer.ServeHTTP(resp, req)
 		} else {
 			// Serve the GopherJS client
 			folderReader(gzipped.FileServer(bundle.Assets)).ServeHTTP(resp, req)
