@@ -32,7 +32,3 @@ required = [
 [[constraint]]
   branch = "master"
   name = "github.com/shurcooL/vfsgen"
-
-[[constraint]]
-  name = "github.com/lpar/gzipped"
-  version = "1.0.0"
