@@ -5,7 +5,7 @@ generate:
 	go generate ./frontend/
 
 clean:
-	rm ./proto/client/* ./proto/server/* ./cert.pem ./key.pem \
+	rm -f ./proto/client/* ./proto/server/* ./cert.pem ./key.pem \
 		./frontend/html/frontend.js ./frontend/html/frontend.js.map
 
 install:
